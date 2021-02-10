@@ -45,7 +45,7 @@ app.get('/play', function(request, response) {
         var user = request.session.username.toUpperCase();
         response.render('play', {user: user});
 	} else {
-		response.send('Please login to view this page!');
+		response.render('error.html');
 	}
 	response.end();
 });
@@ -65,7 +65,7 @@ app.post('/auth', function(request, response) {
 				request.session.username = username;
 				response.redirect('/play');
 			} else {
-				response.send('Incorrect Username and/or Password!');
+				response.render('Invalid Username & Password');
                 
 			}			
 			response.end();
