@@ -1,8 +1,8 @@
 // basic app setup with dependencies
 const express = require('express');
-const passport = require('passport');
 const bodyParser = require('body-parser');
 const mysql = require('mysql')
+const {MongoClient} = require('mongodb');
 const app = express();
 const dotenv = require('dotenv');
 dotenv.config();
@@ -10,6 +10,18 @@ dotenv.config();
 const port = process.env.PORT
 
 
+const uri = process.env.URI;
+const client = new MongoClient(uri, { useNewUrlParser: true }, { useUnifiedTopology: true } );
+client.connect(err => {
+  const collection = client.db("sample_training").collection("companies");
+  // perform actions on the collection object
+//   collection.insertOne()
+  client.close();
+});
+
+
+
+// Remote MySQL
 var connection = mysql.createConnection({
 	host     : process.env.HOST,
 	user     : process.env.USER,
@@ -30,6 +42,7 @@ const expressSession = require('express-session')({
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
     app.use(expressSession);
+
 
 // routes
 app.get('/', (req,res) => {
