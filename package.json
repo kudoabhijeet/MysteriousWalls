@@ -24,6 +24,7 @@
     "express-session": "^1.17.1",
     "firebase-admin": "^9.4.2",
     "mongodb": "^3.6.4",
+    "mongoose": "^5.11.17",
     "mysql": "^2.18.1",
     "passport": "^0.4.1"
   },

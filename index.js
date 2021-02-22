@@ -70,7 +70,7 @@ app.get('/login', (req,res)=>{
 app.post('/auth', function(request, response) {
 	var username = request.body.username;
 	var password = request.body.password;
-    console.log(username);
+    console.log(username + 'Logged in');
 	if (username && password) {
 		connection.query('SELECT * FROM accounts WHERE username = ? AND password = ?', [username, password], function(error, results, fields) {
 			if (results.length > 0) {
